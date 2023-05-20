@@ -26,7 +26,7 @@ namespace API_Automation_SpecFlow.StepDefinitions
         [When(@"Passing the name (.+) and new Job (.+)")]
         public void WhenPassingTheNameAndNewJob(string name, string newJob)
         {
-            bodydata = Helpers.BodyData.createRequestData(name, newJob);
+            bodydata = Helpers.BodyData.updateRequestData(name, newJob);
             JsonData = JsonConvert.DeserializeObject<UpdateUserRequest>(bodydata);         
         }
 

@@ -75,6 +75,22 @@ namespace API_Automation_SpecFlow.Actions
 
         }
 
+        public static UpdatedUserResponse patch_User(UpdateUserRequest userRequest, string url)
+        {
+            RestClient restclient = new RestClient();
+            RestRequest request = new RestRequest(Helpers.Helpers.updateUserReq(), Method.Patch);
+            RestResponse response;
+
+            restclient = new RestClient(Helpers.Helpers.getBaseURL());
+            request.AddJsonBody(JsonConvert.SerializeObject(userRequest));
+            request.RequestFormat = DataFormat.Json;
+
+            response = restclient.Execute(request);
+            Assert.AreEqual(response.StatusCode.ToString(), "OK");
+            return JsonConvert.DeserializeObject<UpdatedUserResponse>(response.Content.ToString());
+
+        }
+
 
     }
 }
