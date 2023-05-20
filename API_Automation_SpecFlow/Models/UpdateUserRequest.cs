@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace API_Automation_SpecFlow.Models
 {
-    public class UpdatedUserResponse
+    public class UpdateUserRequest
     {
-        public string? updatedAt { get; set; }
-        public string? job { get; set; }        
+        public string? job { get; set; }
         public string? name { get; set; }
-
     }
 }

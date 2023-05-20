@@ -64,5 +64,23 @@ namespace API_Automation_SpecFlow.ResponseValidators
             }
 
         }
+
+        public static bool updateUserResponseValidations(UpdatedUserResponse? updatedUserResponse, string name, string newJob)
+        {
+            try
+            {
+
+                Assert.IsNotNull(updatedUserResponse);
+                Assert.IsNotNull(updatedUserResponse.updatedAt);
+                Assert.AreEqual(updatedUserResponse.name, name);
+                Assert.AreEqual(updatedUserResponse.job, newJob);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }
