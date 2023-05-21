@@ -33,14 +33,16 @@ namespace API_Automation_SpecFlow.Actions
         {
             RestClient restclient = new RestClient();
             RestRequest request = new RestRequest(Helpers.Helpers.getListUserUrl(), Method.Get);
-            RestResponse response;
+            RestResponse? response;
 
             restclient = new RestClient(Helpers.Helpers.getBaseURL());            
             request.RequestFormat = DataFormat.Json;
 
             response = restclient.Execute(request);
             Assert.AreEqual(response.StatusCode.ToString(), "OK");
+            
             return JsonConvert.DeserializeObject<ListUserResponse>(response.Content.ToString());
+            
 
         }
 
@@ -61,16 +63,16 @@ namespace API_Automation_SpecFlow.Actions
 
         public static UpdatedUserResponse Update_User(UpdateUserRequest userRequest, string url)
         {
-            RestClient restclient = new RestClient();
-            RestRequest request = new RestRequest(Helpers.Helpers.updateUserReq(), Method.Put);
-            RestResponse response;
-
+            RestClient? restclient = new RestClient();
+            RestRequest? request = new RestRequest(Helpers.Helpers.updateUserReq(), Method.Put);
+            RestResponse? response = new RestResponse();            
             restclient = new RestClient(Helpers.Helpers.getBaseURL());
             request.AddJsonBody(JsonConvert.SerializeObject(userRequest));
             request.RequestFormat = DataFormat.Json;
 
             response = restclient.Execute(request);
-            Assert.AreEqual(response.StatusCode.ToString(), "OK");
+            Assert.AreEqual(response.StatusCode.ToString(), "OK");            
+          
             return JsonConvert.DeserializeObject<UpdatedUserResponse>(response.Content.ToString());
 
         }

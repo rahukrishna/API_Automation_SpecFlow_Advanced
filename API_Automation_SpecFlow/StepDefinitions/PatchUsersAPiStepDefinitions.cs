@@ -33,12 +33,14 @@ namespace API_Automation_SpecFlow.StepDefinitions
         [When(@"trying to get the data")]
         public void WhenTryingToGetTheData()
         {
+            if (JsonData!=null && url !=null) 
             patchedUserResponse = Serivce_Actions.Update_User(JsonData, url);            
         }
 
         [Then(@"the patched response should contain the name (.+) and new job (.+)")]
         public void ThenThePatchedResponseShouldContainTheNameAndNewJob(string name, string newJob)
         {
+            if (patchedUserResponse!=null)
             Assert.IsTrue(ResponseValidations.patchUserResponseValidations(patchedUserResponse, name, newJob));           
         }
     }

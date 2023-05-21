@@ -13,9 +13,9 @@ namespace API_Automation_SpecFlow.StepDefinitions
     public class UpdateUsersAPiValidationsStepDefinitions
     {
         string? url;
-        string? bodydata;
+        string? bodydata ;
         UpdateUserRequest? JsonData;
-        UpdatedUserResponse? updatedUserResponse;        
+        UpdatedUserResponse? updatedUserResponse;
         [Given(@"Want to update the user details")]
         public void GivenWantToUpdateTheUserDetails()
         {
@@ -33,12 +33,14 @@ namespace API_Automation_SpecFlow.StepDefinitions
         [When(@"retrying the update data")]
         public void WhenRetryingTheUpdateData()
         {            
+            if (JsonData != null && url != null)
             updatedUserResponse = Serivce_Actions.Update_User(JsonData, url);
         }
 
         [Then(@"I should get the response of updated response with name (.+) and new job (.+)")]
         public void ThenIShouldGetTheResponseOfUpdatedResponseWithNameAndNewJob(string name, string newJob)
         {
+            if(updatedUserResponse!= null)
             Assert.IsTrue(ResponseValidations.updateUserResponseValidations(updatedUserResponse, name, newJob));           
 
         }

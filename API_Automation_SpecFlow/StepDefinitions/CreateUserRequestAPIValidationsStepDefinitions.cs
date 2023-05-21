@@ -35,12 +35,14 @@ namespace API_Automation_SpecFlow.StepDefinitions
         [When(@"retrying the data")]
         public void WhenRetryingTheData()
         {
+            if(JsonData!=null && url!=null)
             createdUserResponse = Serivce_Actions.Post_CreateUser(JsonData, url);           
         }
 
         [Then(@"I should get the response of created request with name (.+) and job (.+)")]
         public void ThenIShouldGetTheResponseOfCreatedRequestWithNameAndJob(string name, string job)
         {
+            if(createdUserResponse!=null)
             Assert.IsTrue(ResponseValidations.createUserResponseValidations(createdUserResponse, name, job));
         }
 

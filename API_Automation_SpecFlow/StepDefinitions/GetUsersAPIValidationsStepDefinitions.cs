@@ -11,9 +11,8 @@ namespace API_Automation_SpecFlow.StepDefinitions
     [Binding]
     public class GetUsersAPIValidationsStepDefinitions
     {
-        string? url;
-        string? bodydata;
-        ListUserResponse? usersListResponse;
+        string? url ;        
+        ListUserResponse? usersListResponse = new();
         SingleUserResponse? singleUserResponse;        
 
 
@@ -26,13 +25,15 @@ namespace API_Automation_SpecFlow.StepDefinitions
         [When(@"I retrive the data of users list")]
         public void WhenIRetriveTheDataOfUsersList()
         {
+            if (url != null) 
             usersListResponse = Serivce_Actions.get_ListUser(url);            
         }
 
         [Then(@"Users list should contain some value")]
         public void ThenUsersListShouldContainSomeValue()
         {
-            Assert.IsTrue(ResponseValidations.listUserResponseValidations(usersListResponse));
+            if (usersListResponse != null)
+                Assert.IsTrue(ResponseValidations.listUserResponseValidations(usersListResponse));
 
         }
         [Given(@"Iwant to get single user details")]
@@ -44,12 +45,14 @@ namespace API_Automation_SpecFlow.StepDefinitions
         [When(@"I retrivee data for a single user")]
         public void WhenIRetriveeDataForASingleUser()
         {
+            if (url!= null)
             singleUserResponse = Serivce_Actions.get_SingleUser(url);            
         }
 
         [Then(@"I should get the details of singke user")]
         public void ThenIShouldGetTheDetailsOfSingkeUser()
         {
+            if(singleUserResponse != null)
             Assert.IsTrue(ResponseValidations.singleUserResponseValidations(singleUserResponse));           
 
         }

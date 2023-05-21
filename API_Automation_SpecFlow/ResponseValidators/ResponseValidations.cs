@@ -48,14 +48,14 @@ namespace API_Automation_SpecFlow.ResponseValidators
 
         }
 
-        public static bool singleUserResponseValidations(SingleUserResponse? singleUserResponse)
+        public static bool singleUserResponseValidations(SingleUserResponse singleUserResponse)
         {
             try
             {
                 
-                Assert.IsNotNull(singleUserResponse);
-                Assert.IsNotNull(singleUserResponse.data);
+                Assert.IsNotNull(singleUserResponse);                
                 Assert.IsNotNull(singleUserResponse.support);
+                Assert.IsNotNull(singleUserResponse.data);
                 return true;
             }
             catch (Exception)
@@ -65,7 +65,7 @@ namespace API_Automation_SpecFlow.ResponseValidators
 
         }
 
-        public static bool updateUserResponseValidations(UpdatedUserResponse? updatedUserResponse, string name, string newJob)
+        public static bool updateUserResponseValidations(UpdatedUserResponse updatedUserResponse, string name, string newJob)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace API_Automation_SpecFlow.ResponseValidators
 
         }
 
-        public static bool patchUserResponseValidations(UpdatedUserResponse? updatedUserResponse, string name, string newJob)
+        public static bool patchUserResponseValidations(UpdatedUserResponse updatedUserResponse, string name, string newJob)
         {
             try
             {
